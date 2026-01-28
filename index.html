@@ -264,6 +264,13 @@
         if (e.key === 'ArrowRight') goToSlide(currentIndex + 1);
     });
 
+    // 마지막 슬라이드 클릭 시 사전등록 페이지로 이동
+    const lastImage = images[imageCount - 1];
+    lastImage.style.cursor = 'pointer';
+    lastImage.addEventListener('click', () => {
+        window.open('https://landing-page-theta-lime-83.vercel.app/', '_blank');
+    });
+
     // 터치 스와이프
     let touchStartX = 0;
     const container = document.querySelector('.carousel-container');
