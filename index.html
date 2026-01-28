@@ -68,14 +68,20 @@
             justify-content: center;
             align-items: center;
             gap: 16px;
-            padding: 10px 20px;
+            padding: 6px 20px;
             flex: 1;
             min-height: 0;
         }
 
-        .carousel-container {
+        .carousel-wrapper {
+            position: relative;
             max-width: 720px;
             max-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .carousel-container {
             overflow: hidden;
             border-radius: 16px;
             box-shadow:
@@ -91,6 +97,49 @@
             width: 100%;
             flex-shrink: 0;
             display: block;
+        }
+
+        /* 오버레이 하단 영역 */
+        .carousel-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0 12px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.5));
+            border-radius: 0 0 16px 16px;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            pointer-events: auto;
+        }
+        .indicators .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.35);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .indicators .dot.active {
+            background: #e6b45b;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .slide-counter {
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 6px;
         }
 
         .nav-btn {
@@ -114,63 +163,18 @@
             transform: scale(1.1);
         }
 
-        /* 페이지 인디케이터 */
-        .indicators {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            padding: 6px 20px 2px;
-            flex-shrink: 0;
-        }
-        .indicators .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .indicators .dot.active {
-            background: #e6b45b;
-            width: 24px;
-            border-radius: 4px;
-        }
-
-        /* 슬라이드 카운터 */
-        .slide-counter {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            font-size: 13px;
-            color: #96855a;
-            padding-bottom: 6px;
-            margin-top: 2px;
-            flex-shrink: 0;
-        }
-
-        /* 푸터 */
-        .page-footer {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 2px 20px 8px;
-            font-size: 12px;
-            color: #70633d;
-            flex-shrink: 0;
-        }
 
         @media (max-width: 600px) {
             .page-header { padding: 12px 16px 6px; }
             .page-header h1 { font-size: 17px; }
-            .main-content { padding: 6px 8px; gap: 8px; }
+            .main-content { padding: 6px 8px 8px; gap: 8px; }
             .carousel-container { border-radius: 12px; }
+            .carousel-overlay { border-radius: 0 0 12px 12px; padding: 16px 0 10px; }
             .nav-btn { width: 36px; height: 36px; font-size: 16px; }
-            .indicators { padding: 8px 20px 2px; gap: 6px; }
+            .indicators { gap: 6px; }
             .indicators .dot { width: 6px; height: 6px; }
             .indicators .dot.active { width: 18px; }
-            .slide-counter { font-size: 11px; }
+            .slide-counter { font-size: 10px; }
         }
 
         @media (max-height: 600px) {
@@ -189,31 +193,33 @@
 </div>
 
 <header class="page-header">
-    <h1>치매 대비, 성년후견제도 알아보기</h1>
+    <h1>치매 초기, 안심 금융 케어로 해결하세요</h1>
 </header>
 
 <div class="main-content">
     <button class="nav-btn prev-btn">&#10094;</button>
-    <div class="carousel-container">
-        <div class="carousel-slide">
-            <img src="cardImage/표지.png" alt="카드뉴스 이미지 1">
-            <img src="cardImage/성년후견제도.png" alt="카드뉴스 이미지 2">
-            <img src="cardImage/미리준비.png" alt="카드뉴스 이미지 3">
-            <img src="cardImage/방법.png" alt="카드뉴스 이미지 4">
-            <img src="cardImage/치매진단동결.png" alt="카드뉴스 이미지 5">
-            <img src="cardImage/치매환자.png" alt="카드뉴스 이미지 6">
-            <img src="cardImage/판단력.png" alt="카드뉴스 이미지 7">
-            <img src="cardImage/함께지켜봅니다.png" alt="카드뉴스 이미지 8">
-            <img src="cardImage/케어페이플러스다운.png" alt="카드뉴스 이미지 9">
+    <div class="carousel-wrapper">
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <img src="cardImage/image 1.png" alt="카드뉴스 이미지 1">
+                <img src="cardImage/image 2.png" alt="카드뉴스 이미지 2">
+                <img src="cardImage/image 3.png" alt="카드뉴스 이미지 3">
+                <img src="cardImage/image 4.png" alt="카드뉴스 이미지 4">
+                <img src="cardImage/image 5.png" alt="카드뉴스 이미지 5">
+                <img src="cardImage/image 6.png" alt="카드뉴스 이미지 6">
+                <img src="cardImage/image 7.png" alt="카드뉴스 이미지 7">
+                <img src="cardImage/image 8.png" alt="카드뉴스 이미지 8">
+                <img src="cardImage/image 9.png" alt="카드뉴스 이미지 9">
+            </div>
+        </div>
+        <div class="carousel-overlay">
+            <div class="indicators" id="indicators"></div>
+            <div class="slide-counter"><span id="currentNum">1</span> / <span id="totalNum">9</span></div>
         </div>
     </div>
     <button class="nav-btn next-btn">&#10095;</button>
 </div>
 
-<div class="indicators" id="indicators"></div>
-<div class="slide-counter"><span id="currentNum">1</span> / <span id="totalNum">9</span></div>
-
-<footer class="page-footer">케어페이플러스</footer>
 
 <script>
     const carouselSlide = document.querySelector('.carousel-slide');
