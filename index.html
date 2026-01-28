@@ -338,7 +338,15 @@
         const dot = document.createElement('div');
         dot.classList.add('dot');
         if (i === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(i));
+        dot.addEventListener('click', () => {
+            if (window.gtag) {
+                gtag('event', 'carousel_navigation', {
+                    event_category: 'Carousel',
+                    event_label: `indicator_click_to_slide_${i}`
+                });
+            }
+            goToSlide(i);
+        });
         indicatorsContainer.appendChild(dot);
     }
     const dots = document.querySelectorAll('.dot');
@@ -356,14 +364,43 @@
         updateIndicators();
     }
 
-    prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-    nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+    prevBtn.addEventListener('click', () => {
+        if (window.gtag) {
+            gtag('event', 'carousel_navigation', {
+                event_category: 'Carousel',
+                event_label: 'prev_button_click'
+            });
+        }
+        goToSlide(currentIndex - 1);
+    });
+    nextBtn.addEventListener('click', () => {
+        if (window.gtag) {
+            gtag('event', 'carousel_navigation', {
+                event_category: 'Carousel',
+                event_label: 'next_button_click'
+            });
+        }
+        goToSlide(currentIndex + 1);
+    });
 
     window.addEventListener('resize', () => goToSlide(currentIndex));
     window.addEventListener('load', () => goToSlide(currentIndex));
 
     // 키보드 좌우 화살표
     document.addEventListener('keydown', (e) => {
+        if (window.gtag) {
+            if (e.key === 'ArrowLeft') {
+                gtag('event', 'carousel_navigation', {
+                    event_category: 'Carousel',
+                    event_label: 'keyboard_arrow_left'
+                });
+            } else if (e.key === 'ArrowRight') {
+                gtag('event', 'carousel_navigation', {
+                    event_category: 'Carousel',
+                    event_label: 'keyboard_arrow_right'
+                });
+            }
+        }
         if (e.key === 'ArrowLeft') goToSlide(currentIndex - 1);
         if (e.key === 'ArrowRight') goToSlide(currentIndex + 1);
     });
@@ -398,6 +435,19 @@
     container.addEventListener('touchend', (e) => {
         const diff = touchStartX - e.changedTouches[0].clientX;
         if (Math.abs(diff) > 50) {
+            if (window.gtag) {
+                if (diff > 0) {
+                    gtag('event', 'carousel_navigation', {
+                        event_category: 'Carousel',
+                        event_label: 'swipe_left'
+                    });
+                } else {
+                    gtag('event', 'carousel_navigation', {
+                        event_category: 'Carousel',
+                        event_label: 'swipe_right'
+                    });
+                }
+            }
             diff > 0 ? goToSlide(currentIndex + 1) : goToSlide(currentIndex - 1);
         }
     });
