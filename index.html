@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>케어페이플러스 - 카드뉴스</title>
+    <!-- Hotjar (Contentsquare) -->
+    <script src="https://t.contentsquare.net/uxa/6812e90f26dc4.js"></script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9FE4VRBVE8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9FE4VRBVE8');
+    </script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            height: 100dvh;
             font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(135deg, #1f1a0e 0%, #2e2510 40%, #3d3015 70%, #4a3a1a 100%);
+            background-attachment: fixed;
             color: #e0e8f0;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
         }
 
         /* 배경 장식 요소 */
@@ -46,18 +53,67 @@
             top: 50%; left: 60%;
         }
 
+        /* 텍스트 섹션 */
+        .text-section {
+            position: relative;
+            z-index: 1;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 48px 28px;
+            text-align: center;
+        }
+        .text-section .label {
+            display: inline-block;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #e6b45b;
+            border: 1px solid rgba(230, 180, 91, 0.3);
+            background: rgba(230, 180, 91, 0.08);
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        .text-section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        .text-section p {
+            font-size: 15px;
+            line-height: 1.75;
+            color: #a89a7e;
+        }
+        .text-section .divider {
+            width: 40px;
+            height: 2px;
+            background: rgba(230, 180, 91, 0.3);
+            margin: 24px auto;
+            border-radius: 1px;
+        }
+
         /* 헤더 */
         .page-header {
             position: relative;
             z-index: 1;
             text-align: center;
             padding: 12px 20px 6px;
-            flex-shrink: 0;
         }
         .page-header h1 {
             font-size: 24px;
             font-weight: 700;
             color: #ffffff;
+        }
+
+        /* 카드뉴스 영역 - 화면 꽉 채움 */
+        .card-news-section {
+            position: relative;
+            z-index: 1;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* 메인 컨텐츠 */
@@ -163,8 +219,10 @@
             transform: scale(1.1);
         }
 
-
         @media (max-width: 600px) {
+            .text-section { padding: 36px 20px; }
+            .text-section h2 { font-size: 18px; }
+            .text-section p { font-size: 14px; }
             .page-header { padding: 12px 16px 6px; }
             .page-header h1 { font-size: 17px; }
             .main-content { padding: 6px 8px 8px; gap: 8px; }
@@ -192,34 +250,59 @@
     <div class="circle c3"></div>
 </div>
 
-<header class="page-header">
-    <h1>치매 초기, 안심 금융 케어로 해결하세요</h1>
-</header>
-
-<div class="main-content">
-    <button class="nav-btn prev-btn">&#10094;</button>
-    <div class="carousel-wrapper">
-        <div class="carousel-container">
-            <div class="carousel-slide">
-                <img src="cardImage/image 1.png" alt="카드뉴스 이미지 1">
-                <img src="cardImage/image 2.png" alt="카드뉴스 이미지 2">
-                <img src="cardImage/image 3.png" alt="카드뉴스 이미지 3">
-                <img src="cardImage/image 4.png" alt="카드뉴스 이미지 4">
-                <img src="cardImage/image 5.png" alt="카드뉴스 이미지 5">
-                <img src="cardImage/image 6.png" alt="카드뉴스 이미지 6">
-                <img src="cardImage/image 7.png" alt="카드뉴스 이미지 7">
-                <img src="cardImage/image 8.png" alt="카드뉴스 이미지 8">
-                <img src="cardImage/image 9.png" alt="카드뉴스 이미지 9">
-            </div>
-        </div>
-        <div class="carousel-overlay">
-            <div class="indicators" id="indicators"></div>
-            <div class="slide-counter"><span id="currentNum">1</span> / <span id="totalNum">9</span></div>
-        </div>
-    </div>
-    <button class="nav-btn next-btn">&#10095;</button>
+<!-- 상단 문구 -->
+<div class="text-section">
+    <div class="label">Why We Started</div>
+    <h2>치매 환자의 금융 사고는<br>개인의 부주의가 아닙니다</h2>
+    <div class="divider"></div>
+    <p>
+        제도의 공백에서 발생하는 문제입니다.<br>
+        우리는 치매 환자의 금융 피해 사례와 현행 후견·금융 보호 제도의 한계를 분석하며,
+        <em style="color:#e6b45b; font-style:normal;">'모든 금융을 통제하지 않으면서도 사고를 예방할 수 있는 방법'</em>을 고민했습니다.
+    </p>
 </div>
 
+<!-- 카드뉴스 영역 -->
+<div class="card-news-section">
+    <header class="page-header">
+        <h1>치매 초기, 안심 금융 케어로 해결하세요</h1>
+    </header>
+
+    <div class="main-content">
+        <button class="nav-btn prev-btn">&#10094;</button>
+        <div class="carousel-wrapper">
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="cardImage/image 1.png" alt="카드뉴스 이미지 1">
+                    <img src="cardImage/image 2.png" alt="카드뉴스 이미지 2">
+                    <img src="cardImage/image 3.png" alt="카드뉴스 이미지 3">
+                    <img src="cardImage/image 4.png" alt="카드뉴스 이미지 4">
+                    <img src="cardImage/image 5.png" alt="카드뉴스 이미지 5">
+                    <img src="cardImage/image 6.png" alt="카드뉴스 이미지 6">
+                    <img src="cardImage/image 7.png" alt="카드뉴스 이미지 7">
+                    <img src="cardImage/image 8.png" alt="카드뉴스 이미지 8">
+                    <img src="cardImage/image 9.png" alt="카드뉴스 이미지 9">
+                </div>
+            </div>
+            <div class="carousel-overlay">
+                <div class="indicators" id="indicators"></div>
+                <div class="slide-counter"><span id="currentNum">1</span> / <span id="totalNum">9</span></div>
+            </div>
+        </div>
+        <button class="nav-btn next-btn">&#10095;</button>
+    </div>
+</div>
+
+<!-- 하단 문구 -->
+<div class="text-section">
+    <div class="label">Our Solution</div>
+    <h2>통제가 아닌,<br>함께 대응하는 예방 서비스</h2>
+    <div class="divider"></div>
+    <p>
+        케어페이플러스는 부모의 금융을 대신 결정하기 위한 도구가 아닙니다.<br>
+        사고가 발생하기 전에 <em style="color:#e6b45b; font-style:normal;">가족이 함께 인지하고 대응할 수 있도록 돕는 예방 서비스</em>입니다.
+    </p>
+</div>
 
 <script>
     const carouselSlide = document.querySelector('.carousel-slide');
